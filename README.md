@@ -2,9 +2,9 @@
 
 1. Create a todoEA folder on your machine
 
-2. Clone the backend repo into todoEA/backend
+2. Clone the backend repo into todoEA
 
-3. Clone the frontend repo into todoEA/frontend
+3. Clone the frontend repo into todoEA
 
 Repos can be found here:
 backend: https://github.com/EricLusk-Jopson/todoEABackend.git
