@@ -5,7 +5,6 @@ const Todo = require("../models/todoModel");
 // @route   GET /todos
 // @access  public
 const getTodos = asyncHandler(async (req, res) => {
-  console.log(req.query);
   const filter = {
     complete: req.query.complete,
     name: { $regex: `${req.query.search}` },
@@ -23,11 +22,6 @@ const getTodos = asyncHandler(async (req, res) => {
 // @route   POST /todos
 // @access  public
 const setTodo = asyncHandler(async (req, res) => {
-  console.log("looking at request");
-  //   console.log(req);
-  console.log("looking at request as json");
-  console.log("body is: ", req.body);
-  console.log(req.params);
   if (!req.body.name || req.body.name === "") {
     res.status(400);
     throw new Error("Todos must have a name");
