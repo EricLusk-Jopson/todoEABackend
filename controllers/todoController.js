@@ -5,8 +5,17 @@ const Todo = require("../models/todoModel");
 // @route   GET /todos
 // @access  public
 const getTodos = asyncHandler(async (req, res) => {
-  const { limit } = req.query;
-  const todos = await Todo.find().sort({ name: 1 }).limit(limit);
+  console.log(req.query);
+  const filter = {
+    complete: req.query.complete,
+    name: { $regex: `${req.query.search}` },
+  };
+  let todos;
+  if (req.query.complete) {
+    todos = await Todo.find(filter).sort({ timestamp: -1, name: 1 }).limit(10);
+  } else {
+    todos = await Todo.find(filter).sort({ name: 1 });
+  }
   res.status(200).json(todos);
 });
 
@@ -17,7 +26,7 @@ const setTodo = asyncHandler(async (req, res) => {
   console.log("looking at request");
   //   console.log(req);
   console.log("looking at request as json");
-  console.log(req.body);
+  console.log("body is: ", req.body);
   console.log(req.params);
   if (!req.body.name || req.body.name === "") {
     res.status(400);
@@ -45,6 +54,7 @@ const toggleTodo = asyncHandler(async (req, res) => {
   // update todo
   await Todo.findByIdAndUpdate(req.params.id, {
     complete: !todo.complete,
+    timestamp: Date.now(),
   });
 
   const confirmation = await Todo.findById(req.params.id);
