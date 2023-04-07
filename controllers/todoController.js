@@ -39,6 +39,14 @@ const setTodo = asyncHandler(async (req, res) => {
   res.status(200).json(todo);
 });
 
+// @desc    deletes all todos
+// @route   DELETE /todos
+// @access  public
+const deleteAll = asyncHandler(async (req, res) => {
+  const todo = await Todo.deleteMany();
+  res.status(200).json(todo);
+});
+
 // @desc    set a todo
 // @route   PUT /todos
 // @access  public
@@ -64,5 +72,6 @@ const toggleTodo = asyncHandler(async (req, res) => {
 module.exports = {
   getTodos,
   setTodo,
+  deleteAll,
   toggleTodo,
 };
