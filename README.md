@@ -5,7 +5,9 @@
 2. cd into todoEA
 
 3. run the following two commands
+
    git clone https://github.com/EricLusk-Jopson/todoEABackend.git
+
    git clone https://github.com/EricLusk-Jopson/todoEAFrontend.git
 
 4. cd into todoEABackend and add a .env file to the backend folder. Paste the Mongo uri provided via email.
